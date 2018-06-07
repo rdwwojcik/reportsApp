@@ -17,7 +17,7 @@ public class AuthorizationUser implements UserDetails {
     private final List<? extends GrantedAuthority> authorities;
 
     public AuthorizationUser(User user) {
-        password = user.getPassword();
+        password = user.getPasswordHash();
         login = user.getLogin();
 
         authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
