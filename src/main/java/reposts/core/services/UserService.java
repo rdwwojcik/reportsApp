@@ -1,8 +1,8 @@
 package reposts.core.services;
 
-import reposts.core.entities.User;
+import reposts.core.dto.UserDTO;
 
-public interface UserService extends ServiceInterface<User>{
+public interface UserService extends ServiceInterface<UserDTO>{
 
-    User findByLogin(String login);
+    UserDTO findByLogin(String login);
 }

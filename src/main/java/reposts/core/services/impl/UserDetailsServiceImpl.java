@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import reposts.AuthorizationUser;
+import reposts.core.dto.UserDTO;
 import reposts.core.entities.User;
 import reposts.core.services.UserService;
 
@@ -19,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User currentUser = userService.findByLogin(login);
+        UserDTO currentUser = userService.findByLogin(login);
         if (currentUser != null) { return new AuthorizationUser(currentUser); }
         throw new UsernameNotFoundException("User not found for login: " + login);
     }

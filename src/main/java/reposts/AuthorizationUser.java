@@ -1,5 +1,6 @@
 package reposts;
 
+import reposts.core.dto.UserDTO;
 import reposts.core.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,9 +17,9 @@ public class AuthorizationUser implements UserDetails {
 
     private final List<? extends GrantedAuthority> authorities;
 
-    public AuthorizationUser(User user) {
-        password = user.getPasswordHash();
-        login = user.getLogin();
+    public AuthorizationUser(UserDTO userDTO) {
+        password = userDTO.getPasswordHash();
+        login = userDTO.getLogin();
 
         authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
     }
