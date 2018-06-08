@@ -1,5 +1,5 @@
 security.basic.enabled: false
-spring.thymeleaf.mode: LEGACYHTML5
+spring.thymeleaf.mode: HTML
 application-version: 1.0.0
 
 spring:

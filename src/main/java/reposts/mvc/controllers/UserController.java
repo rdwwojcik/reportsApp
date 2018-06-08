@@ -20,12 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String getUser(){
-        return "index";
-    }
-
-    @GetMapping("/userform")
+    @GetMapping("/usernew")
     public String newUser(Model model){
         model.addAttribute("user", new UserDTO());
         return "userform";
