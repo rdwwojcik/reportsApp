@@ -16,7 +16,8 @@
                 <br/>
                 <form th:object="${user}" th:action="@{/user}" method="post" >
                     <div class="form-group row" >
-                        <label class="col-sm-3" th:text="#{label.user.firstName}">imię</label>
+                        <!--<label class="col-sm-3" th:text="#{label.user.firstName}">imię</label>-->
+                        <label class="col-sm-3">Imię</label>
                         <span class="col-sm-5"><input class="form-control" name="firstName" value="" required="required"/></span>
                         <span id="firstNameError" class="alert alert-danger col-sm-4" style="display:none"></span>
                     </div>
