@@ -1,6 +1,8 @@
 security.basic.enabled: false
 spring.thymeleaf.mode: HTML
 application-version: 1.0.0
+#spring.messages.encoding=UTF-8
+#spring.messages.encoding=ISO-8859-1
 
 spring:
   profiles.active: test
@@ -27,6 +29,8 @@ spring:
         show_sql: true
         type: trace
         synonyms: true
+#  messages:
+#    encoding: ISO-8859-1
 ---
 spring:
   profiles: test
