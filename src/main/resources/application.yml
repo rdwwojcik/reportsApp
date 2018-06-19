@@ -54,3 +54,9 @@ server:
   session:
     timeout: 1800 # session timeout in second
     cookie.max-age: 1800
+
+# log SQL queries to see if action is happening
+logging:
+  level:
+    org.hibernate.SQL: debug
+

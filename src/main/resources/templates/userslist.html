@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dane użytkownika:</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<div class="wrapper">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <div id="content">
+        <!--/*/ <th:block th:include="fragments/content :: content"></th:block> /*/-->
+
+        <div th:if="${not #lists.isEmpty(users)}">
+            <h2>User List</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>User Id</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Login</th>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"><a href="/user/${user.id}">Id</a></td>
+                    <td th:text="${user.firstName}">firstname</td>
+                    <td th:text="${user.lastName}">lastname</td>
+                    <td th:text="${user.email}">email</td>
+                    <td th:text="${user.login}">login</td>
+                    <!--<td><a th:href="${ '/product/' + product.id}">View</a></td>-->
+                    <!--<td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>-->
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</body>
+</html>
