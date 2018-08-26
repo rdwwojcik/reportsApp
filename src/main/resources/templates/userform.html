@@ -14,22 +14,21 @@
             <div >
                 <h1 th:text="#{label.form.title}">form</h1>
                 <br/>
-                <form action="#" th:action="@{/user}" th:object="${user}" method="post" >
+                <form action="#" th:action="@{/user}" th:object="${userDTO}" method="post" >
                     <div class="form-group row" >
                         <!--<label class="col-sm-3" th:text="#{label.user.firstName}">imię</label>-->
                         <label class="col-sm-3">Imię</label>
                         <span class="col-sm-5">
-                            <input type="text" class="form-control" th:field="*{firstName}" value=""/>
-                            <!--<input class="form-control" name="firstName" value="" required="required"/>-->
+                            <input type="text" class="form-control" th:field="*{firstName}"/>
                         </span>
-                        <span id="firstNameError" class="alert alert-danger col-sm-4" style="display:none" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
-                        <!--<span id="firstNameError" class="alert alert-danger col-sm-4" style="display:none"></span>-->
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3" th:text="#{label.user.lastName}">nazwisko</label>
-                        <span class="col-sm-5"><input class="form-control" name="lastName" value="" required="required"/></span>
+                        <span class="col-sm-5">
+                            <input class="form-control" type="text" th:field="*{lastName}"/>
+                        </span>
                         <span id="lastNameError" class="alert alert-danger col-sm-4" style="display:none"></span>
-
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3" th:text="#{label.user.email}">email</label>

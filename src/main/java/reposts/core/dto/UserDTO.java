@@ -7,8 +7,8 @@ import java.util.Date;
 public class UserDTO {
 
     private Long id;
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Pole nie moze byc puste")
+    @NotEmpty(message = "Pole trzeba wypelnic")
     private String firstName;
     @NotNull
     @NotEmpty

@@ -3,13 +3,11 @@ package reposts.mvc.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.bind.annotation.*;
 import reposts.core.dto.UserDTO;
 import reposts.core.services.UserService;
 
+import javax.management.Query;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,21 +22,17 @@ public class UserController {
     }
 
     @GetMapping("/usernew")
-    public String newUser(UserDTO user){
-//        model.addAttribute("user", new UserDTO());
+    public String newUser(UserDTO userDTO){
         return "userform";
     }
 
     @PostMapping
-    public String saveUser(@Valid UserDTO user, BindingResult bindingResult) {
-        System.out.println("Save user");
+    public String saveUser(@Valid UserDTO userDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("Display userform");
             return "userform";
         }
-        System.out.println("Display user");
-        UserDTO savedUser = userService.save(user);
-//        model.addAttribute("user", savedUser);
+        UserDTO savedUser = userService.save(userDTO);
+        model.addAttribute("user", savedUser);
         return "usershow";
 //        return "redirect:/results";
     }
@@ -48,5 +42,12 @@ public class UserController {
         List<UserDTO> users = userService.findAll();
         model.addAttribute("users",users);
         return "userslist";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable(value = "id") Long userId){
+        System.out.println("UserID: " + userId);
+        userService.delete(userService.findById(userId));
+        return "redirect:/user/all";
     }
 }
