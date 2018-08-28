@@ -1,8 +1,11 @@
 package reposts.core.dto;
 
+import reposts.core.entities.Role;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 public class UserDTO {
 
@@ -25,6 +28,7 @@ public class UserDTO {
     private String email;
     private Date createDate;
     private Date updateDate;
+    private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -96,5 +100,13 @@ public class UserDTO {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

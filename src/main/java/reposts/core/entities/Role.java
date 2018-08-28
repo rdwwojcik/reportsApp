@@ -1,9 +1,7 @@
 package reposts.core.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Role {
@@ -11,8 +9,8 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @ManyToMany(mappedBy = "roles")
-//    private List<User> users = new ArrayList<>();
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
     private String role;
 
     public Long getId() {
@@ -23,13 +21,13 @@ public class Role {
         this.id = id;
     }
 
-//    public List<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public String getRole() {
         return role;
