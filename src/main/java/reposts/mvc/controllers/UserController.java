@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import reposts.core.dto.UserDTO;
 import reposts.core.services.UserService;
+import reposts.core.services.exceptions.UserAccountExistsException;
 
 import javax.management.Query;
 import javax.validation.Valid;
@@ -27,14 +28,32 @@ public class UserController {
     }
 
     @PostMapping
-    public String saveUser(@Valid UserDTO userDTO, BindingResult bindingResult, Model model) {
+    public String registerUser(@Valid UserDTO userDTO, BindingResult bindingResult, Model model) {
+        UserDTO newUser = new UserDTO();
+        if (!bindingResult.hasErrors()) {
+            newUser = saveUser(userDTO, bindingResult);
+        }
+        if(newUser == null){
+            bindingResult.rejectValue("login", "message.regLogin");
+        }
+
         if (bindingResult.hasErrors()) {
             return "userform";
         }
-        UserDTO savedUser = userService.save(userDTO);
-        model.addAttribute("user", savedUser);
+
+        model.addAttribute("user", newUser);
         return "usershow";
 //        return "redirect:/results";
+    }
+
+    private UserDTO saveUser(UserDTO userDTO, BindingResult result){
+        UserDTO saved;
+        try{
+            saved = userService.save(userDTO);
+        } catch(UserAccountExistsException e){
+            return null;
+        }
+        return saved;
     }
 
     @GetMapping("/all")

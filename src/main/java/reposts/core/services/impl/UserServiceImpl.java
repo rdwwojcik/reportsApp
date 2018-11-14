@@ -9,6 +9,7 @@ import reposts.core.entities.User;
 import reposts.core.mappers.UserMapper;
 import reposts.core.repositories.UserRepository;
 import reposts.core.services.UserService;
+import reposts.core.services.exceptions.UserAccountExistsException;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO save(UserDTO obj) {
+    public UserDTO save(UserDTO obj) throws UserAccountExistsException {
+
+        if(userExist(obj.getLogin())){
+            throw new UserAccountExistsException("User for login " + obj.getLogin() + " exist in system.");
+        }
+
         User user = userMapper.fromDTO(obj);
         user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
         return userMapper.toDTO(userRepository.save(user));
@@ -53,5 +59,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findByLogin(String login) {
         return userMapper.toDTO(userRepository.findByLogin(login));
+    }
+
+    private boolean userExist(String login){
+        User user = userRepository.findByLogin(login);
+        if(user != null){
+            return true;
+        }
+
+        return false;
     }
 }

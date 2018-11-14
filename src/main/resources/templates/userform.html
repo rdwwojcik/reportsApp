@@ -40,7 +40,7 @@
                         <label class="col-sm-3" th:text="#{label.user.login}">login</label>
                         <span class="col-sm-5"><input class="form-control" name="login" value="" required="required"/></span>
                         <span id="loginError" class="alert alert-danger col-sm-4" style="display:none"></span>
-
+                        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3" th:text="#{label.user.password}">password</label>

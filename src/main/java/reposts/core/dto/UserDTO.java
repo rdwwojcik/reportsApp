@@ -1,12 +1,14 @@
 package reposts.core.dto;
 
 import reposts.core.entities.Role;
+import reposts.mvc.validations.annotations.PasswordMatches;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
+@PasswordMatches
 public class UserDTO {
 
     private Long id;
@@ -23,6 +25,7 @@ public class UserDTO {
     @NotEmpty
     private String password;
     private String passwordHash;
+    private String matchingPassword;
     @NotNull
     @NotEmpty
     private String email;
@@ -76,6 +79,14 @@ public class UserDTO {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 
     public String getEmail() {
