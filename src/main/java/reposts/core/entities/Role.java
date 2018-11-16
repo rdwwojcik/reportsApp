@@ -11,7 +11,7 @@ public class Role {
     private Long id;
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
-    private String role;
+    private String name;
 
     public Long getId() {
         return id;
@@ -30,18 +30,18 @@ public class Role {
     }
 
     public String getRole() {
-        return role;
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", role='" + role + '\'' +
+                ", role='" + name + '\'' +
                 '}';
     }
 }

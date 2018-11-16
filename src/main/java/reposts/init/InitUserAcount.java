@@ -4,10 +4,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import reposts.core.dto.UserDTO;
+import reposts.core.entities.Role;
 import reposts.core.entities.User;
 import reposts.core.services.UserService;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class InitUserAcount {
@@ -29,19 +33,13 @@ public class InitUserAcount {
 
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashPass = encoder.encode("radek");
-
         user.setPasswordHash(hashPass);
 
-//        Role role = new Role();
-//        role.setRole("USER");
-//
-//        List<Role> roleList = new ArrayList<>();
-//        roleList.add(role);
-//
-//        user.setRoles(roleList);
+        Role role = new Role();
+        role.setRole("USER");
 
-//        List<User> users = new ArrayList<>();
-//        users.add(user);
+        user.setRoles(Arrays.asList(role));
+
 
         userService.save(user);
     }

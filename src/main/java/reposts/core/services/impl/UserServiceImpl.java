@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -39,9 +38,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.toDTO(user.get());
     }
 
+    @Transactional
     @Override
     public UserDTO save(UserDTO obj) throws UserAccountExistsException {
-
         if(userExist(obj.getLogin())){
             throw new UserAccountExistsException("User for login " + obj.getLogin() + " exist in system.");
         }
