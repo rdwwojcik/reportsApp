@@ -36,7 +36,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleDTO save(RoleDTO obj) {
-        return null;
+        return mapper.toDTO(repository.save(mapper.fromDTO(obj)));
     }
 
     @Override

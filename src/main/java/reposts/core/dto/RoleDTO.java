@@ -1,27 +1,34 @@
 package reposts.core.dto;
 
-import reposts.core.entities.User;
-
 import java.util.List;
 
 public class RoleDTO {
 
-    private List<User> users;
-    private String role;
+    private Long id;
+    private List<UserDTO> users;
+    private String name;
 
-    public List<User> getUsers() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<UserDTO> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<UserDTO> users) {
         this.users = users;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
 }

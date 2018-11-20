@@ -1,15 +1,13 @@
 package reposts;
 
-import reposts.core.dto.UserDTO;
-import reposts.core.entities.Role;
-import reposts.core.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import reposts.core.dto.RoleDTO;
+import reposts.core.dto.UserDTO;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class AuthorizationUser implements UserDetails {
@@ -26,10 +24,12 @@ public class AuthorizationUser implements UserDetails {
 //        authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
     }
 
-    public List<GrantedAuthority> getAuthorities(List<Role> roles){
+    public List<GrantedAuthority> getAuthorities(List<RoleDTO> roles){
+        System.out.println("Call method List<GrantedAuthority> in Authorization");
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        for(Role role: roles){
-            authorityList.add(new SimpleGrantedAuthority(role.getRole()));
+        for(RoleDTO role: roles){
+            System.out.println("Roles list: " + role.getName());
+            authorityList.add(new SimpleGrantedAuthority(role.getName()));
         }
 
         return authorityList;

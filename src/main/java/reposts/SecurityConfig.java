@@ -20,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+
+        System.out.println("Configure Security HttpSecurity");
+
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**").permitAll()
                 .anyRequest().authenticated()
@@ -37,11 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        System.out.println("Configure Security AuthenticationManagerBuilder");
         auth.authenticationProvider(authenticationProvider());
     }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
+        System.out.println("Configure Security DaoAuthenticationProvider");
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(encoder());

@@ -29,11 +29,11 @@ public class Role {
         this.users = users;
     }
 
-    public String getRole() {
+    public String getName() {
         return name;
     }
 
-    public void setRole(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

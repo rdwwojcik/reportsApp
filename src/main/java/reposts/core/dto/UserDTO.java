@@ -1,6 +1,5 @@
 package reposts.core.dto;
 
-import reposts.core.entities.Role;
 import reposts.mvc.validations.annotations.PasswordMatches;
 
 import javax.validation.constraints.NotEmpty;
@@ -31,7 +30,7 @@ public class UserDTO {
     private String email;
     private Date createDate;
     private Date updateDate;
-    private List<Role> roles;
+    private List<RoleDTO> roles;
 
     public Long getId() {
         return id;
@@ -113,11 +112,11 @@ public class UserDTO {
         this.updateDate = updateDate;
     }
 
-    public List<Role> getRoles() {
+    public List<RoleDTO> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<RoleDTO> roles) {
         this.roles = roles;
     }
 }

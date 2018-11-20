@@ -18,12 +18,13 @@ public class User {
     private String login;
     private String password;
     private String passwordHash;
+    private String matchingPassword;
     private String email;
     @CreationTimestamp
     private Date createDate;
     @UpdateTimestamp
     private Date updateDate;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -109,5 +110,13 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 }
