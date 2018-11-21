@@ -14,6 +14,7 @@ public interface RoleMapper {
 
     Role fromDTO(RoleDTO roleDTO);
 
+//    @Mapping(target = "users", ignore = true )
     RoleDTO toDTO(Role role);
 
     List<Role> fromDTO(List<RoleDTO> rolesDTO);

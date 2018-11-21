@@ -37,9 +37,9 @@ public class InitUserAcount {
 
         RoleDTO role = new RoleDTO();
         role.setName("USER");
-        RoleDTO savedRole = roleService.save(role);
+//        RoleDTO savedRole = roleService.save(role);
 
-        user.setRoles(Arrays.asList(savedRole));
+        user.setRoles(Arrays.asList(role));
 
 
         userService.save(user);
