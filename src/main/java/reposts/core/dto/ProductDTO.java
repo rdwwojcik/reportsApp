@@ -1,20 +1,12 @@
-package reposts.core.entities;
+package reposts.core.dto;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import reposts.core.entities.Dictionary;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Entity
-public class Product {
-    @Id
-    @GeneratedValue
+public class ProductDTO {
+
     private Long id;
-    @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
     private Dictionary dictionary;
     private String name;
     private String description;
@@ -22,9 +14,7 @@ public class Product {
     private Double warrantyPeriod;
     private Double quantity;
     private Long productStatus;
-    @CreationTimestamp
     private Date createDate;
-    @UpdateTimestamp
     private Date updateDate;
 
     public Long getId() {
